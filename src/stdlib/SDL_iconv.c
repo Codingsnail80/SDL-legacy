@@ -47,7 +47,7 @@ size_t SDL_iconv(SDL_iconv_t cd,
 #ifdef ICONV_INBUF_NONCONST
 	retCode = iconv(cd, (char **)inbuf, inbytesleft, outbuf, outbytesleft);
 #else
-	retCode = iconv(cd, inbuf, inbytesleft, outbuf, outbytesleft);
+	retCode = iconv(cd, (char **)inbuf, inbytesleft, outbuf, outbytesleft);
 #endif
 	if ( retCode == (size_t)-1 ) {
 		switch(errno) {
@@ -847,7 +847,7 @@ char *SDL_iconv_string(const char *tocode, const char *fromcode, const char *inb
 	SDL_memset(outbuf, 0, 4);
 
 	while ( inbytesleft > 0 ) {
-		retCode = SDL_iconv(cd, &inbuf, &inbytesleft, &outbuf, &outbytesleft);
+		retCode = SDL_iconv(cd, (const char **)&inbuf, &inbytesleft, &outbuf, &outbytesleft);
 		switch (retCode) {
 		    case SDL_ICONV_E2BIG:
 			{
