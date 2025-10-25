@@ -107,7 +107,7 @@ int SDL_SemWaitTimeout(SDL_sem *sem, Uint32 timeout)
 		pTimeout = &timeout;
 	}
 
-	res = sceKernelWaitSema(sem->semid, 1, pTimeout);
+	res = sceKernelWaitSema(sem->semid, 1, (unsigned int *)pTimeout);
        switch (res) {
                case SCE_KERNEL_ERROR_OK:
                        return 0;
@@ -126,7 +126,7 @@ int SDL_SemTryWait(SDL_sem *sem)
 
 int SDL_SemWait(SDL_sem *sem)
 {
-	return SDL_SemWaitTimeout(sem, SDL_MUTEX_MAXWAIT);
+	return SDL_SemWaitTimeout(sem, (long unsigned int)SDL_MUTEX_MAXWAIT);
 }
 
 /* Returns the current count of the semaphore */
