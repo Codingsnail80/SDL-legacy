@@ -47,3 +47,6 @@ issues, you can join the developers mailing list:
 Enjoy!
 	Sam Lantinga				(slouken@libsdl.org)
 
+Edit: I don't expect the offical psp-port by pspdev to accept my pull
+request. So, for now this will be the new place for updated versions of 
+SDL-legacy (SDL1.2). Enjoy!
